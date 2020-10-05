@@ -1,1 +1,1 @@
-# study-timer
+# Study-timer
