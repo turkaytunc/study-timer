@@ -56,6 +56,18 @@ function App() {
     }, 1000);
   };
 
+  const startStop = () => {
+    setState({ ...state, isPlaying: !state.isPlaying });
+    clearTimeout(tm);
+  };
+
+  decrementSecond();
+
+  const handleReset = () => {
+    setState({ ...state, ...initialState });
+    clearTimeout(tm);
+  };
+
   return (
     <div className="app">
       <div className="prog-title">Study Timer</div>
