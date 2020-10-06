@@ -17,3 +17,143 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #ccc;
+}
+
+.app {
+  background-color: #343434;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10vh 0 70vh 0;
+  width: 50vw;
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 5vh;
+  text-align: center;
+  border-radius: 10px;
+  color: #83b;
+  text-shadow: 1px 1px 0 black;
+}
+
+.prog-title {
+  font-size: 5em;
+  color: #ddd;
+  text-shadow: 2px 2px 2px #a5b;
+}
+
+button {
+  background: white;
+  color: #a5b;
+  height: 1.5em;
+  width: 2.2em;
+  border: none;
+  border-radius: 5px;
+  font-size: 2em;
+}
+
+.section-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5em;
+  padding-top: 2em;
+}
+
+// session area
+
+.session-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.session-button-container {
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+#session-label {
+  font-size: 2em;
+}
+
+#session-length {
+  font-size: 3em;
+}
+
+// break area
+
+.break-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.break-button-container {
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+#break-label {
+  font-size: 2em;
+}
+
+#break-length {
+  font-size: 3em;
+}
+
+// display area
+
+.display-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.display-timer-container {
+  border: 2px solid aliceblue;
+  padding: 10vh 0;
+  width: 80%;
+  border-radius: 5px;
+  margin-bottom: 5em;
+}
+
+#timer-label {
+  font-size: 2em;
+}
+
+#time-left {
+  font-size: 5em;
+}
+
+.display-button-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+}
+
+#reset,
+#start_stop {
+  font-size: 1em;
+  height: 3em;
+  width: 7em;
+}
