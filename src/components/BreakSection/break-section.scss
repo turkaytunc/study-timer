@@ -5,9 +5,11 @@
 
 .break-button-container {
   display: grid;
-  grid-template-columns: 2fr 5fr 2fr;
+  grid-template-columns: 2fr 3fr 2fr;
   align-items: center;
   justify-content: center;
+  justify-items: center;
+  align-content: center;
   padding: 1em 0;
 }
 
@@ -17,4 +19,14 @@
 
 #break-length {
   font-size: 3em;
+}
+
+@media screen and (max-width: 850px) {
+  #break-label {
+    font-size: 1em;
+  }
+
+  #break-length {
+    font-size: 1.5em;
+  }
 }
