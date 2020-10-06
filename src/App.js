@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.scss';
-import BreakSection from './components/BreakSection/BreakSection';
-import SessionSection from './components/SessionSection/SessionSection';
-import DisplaySection from './components/DisplaySection/DisplaySection';
+import { BreakSection } from './components/BreakSection/BreakSection';
+import { SessionSection } from './components/SessionSection/SessionSection';
+import { DisplaySection } from './components/DisplaySection/DisplaySection';
 
 function App() {
   const initialState = {
@@ -11,7 +11,7 @@ function App() {
     sessionLength: 25,
     breakLength: 5,
     isPlaying: false,
-    isBreak: true,
+    isBreak: false,
   };
   const [state, setState] = React.useState(initialState);
 
@@ -56,16 +56,82 @@ function App() {
     }, 1000);
   };
 
+  React.useEffect(() => {
+    if (state.isPlaying) {
+      decrementSecond();
+    }
+  });
   const startStop = () => {
     setState({ ...state, isPlaying: !state.isPlaying });
-    clearTimeout(tm);
-  };
 
-  decrementSecond();
+    clearTimeout(tm);
+    console.log(state.isPlaying);
+  };
 
   const handleReset = () => {
     setState({ ...state, ...initialState });
     clearTimeout(tm);
+  };
+
+  const handleLength = (type, operation) => {
+    switch (type) {
+      case 'break':
+        if (operation === 'increment') {
+          if (state.breakLength > 59) return;
+          setState({ ...state, breakLength: state.breakLength + 1 });
+          if (state.isBreak) {
+            setState({
+              ...state,
+              minuteLeft: state.minuteLeft + 1,
+              breakLength: state.breakLength + 1,
+            });
+          }
+        }
+        if (operation === 'decrement') {
+          if (state.breakLength <= 1) return;
+          setState({ ...state, breakLength: state.breakLength - 1 });
+          if (state.isBreak) {
+            setState({
+              ...state,
+              minuteLeft: state.breakLength - 1,
+              breakLength: state.breakLength - 1,
+            });
+          }
+        }
+        break;
+      case 'session':
+        if (operation === 'increment') {
+          if (state.sessionLength > 59) return;
+          setState({
+            ...state,
+            sessionLength: state.sessionLength + 1,
+          });
+          if (!state.isBreak) {
+            setState({
+              ...state,
+              minuteLeft: state.minuteLeft + 1,
+              sessionLength: state.sessionLength + 1,
+            });
+          }
+        }
+        if (operation === 'decrement') {
+          if (state.sessionLength <= 1) return;
+          setState({
+            ...state,
+            sessionLength: state.sessionLength - 1,
+          });
+          if (!state.isBreak && state.minuteLeft > 0) {
+            setState({
+              ...state,
+              minuteLeft: state.minuteLeft - 1,
+              sessionLength: state.sessionLength - 1,
+            });
+          }
+        }
+        break;
+      default:
+        setState({ ...state });
+    }
   };
 
   return (
