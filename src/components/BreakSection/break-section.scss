@@ -1,0 +1,20 @@
+.break-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.break-button-container {
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+#break-label {
+  font-size: 2em;
+}
+
+#break-length {
+  font-size: 3em;
+}

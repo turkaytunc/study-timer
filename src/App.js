@@ -12,6 +12,7 @@ function App() {
     breakLength: 5,
     isPlaying: false,
     isBreak: false,
+    cycleCount: 0,
   };
   const [state, setState] = React.useState(initialState);
 
@@ -50,6 +51,7 @@ function App() {
             ...state,
             minuteLeft: state.breakLength,
             isBreak: true,
+            cycleCount: state.cycleCount + 1,
           });
         }
       }
@@ -63,9 +65,7 @@ function App() {
   });
   const startStop = () => {
     setState({ ...state, isPlaying: !state.isPlaying });
-
     clearTimeout(tm);
-    console.log(state.isPlaying);
   };
 
   const handleReset = () => {

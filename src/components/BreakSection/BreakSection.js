@@ -1,4 +1,5 @@
 import React from 'react';
+import './break-section.scss';
 
 export const BreakSection = ({ s, handleLength }) => {
   return (
