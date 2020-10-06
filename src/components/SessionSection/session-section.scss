@@ -1,0 +1,20 @@
+.session-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.session-button-container {
+  display: grid;
+  grid-template-columns: 2fr 5fr 2fr;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0;
+}
+
+#session-label {
+  font-size: 2em;
+}
+
+#session-length {
+  font-size: 3em;
+}

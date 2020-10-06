@@ -1,4 +1,5 @@
 import React from 'react';
+import './session-section.scss';
 
 export const SessionSection = ({ s, handleLength }) => {
   return (

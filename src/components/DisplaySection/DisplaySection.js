@@ -1,4 +1,5 @@
 import React from 'react';
+import './display-section.scss';
 
 export const DisplaySection = ({ s, handleReset, startStop }) => {
   return (
