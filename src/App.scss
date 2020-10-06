@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 .app {
   background-color: #343434;
   display: flex;
@@ -15,6 +18,7 @@
 }
 
 .prog-title {
+  font-family: 'Dancing Script', cursive;
   font-size: 5em;
   color: aliceblue;
   text-shadow: 2px 2px 2px #a5b;
@@ -35,6 +39,7 @@ button {
 }
 
 .section-container {
+  font-family: 'Architects Daughter', cursive;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5em;
@@ -61,5 +66,6 @@ button {
   .section-container {
     width: 80%;
     padding-top: 2em;
+    gap: 1em;
   }
 }
