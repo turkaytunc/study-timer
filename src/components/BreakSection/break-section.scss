@@ -18,3 +18,13 @@
 #break-length {
   font-size: 3em;
 }
+
+@media screen and (max-width: 520px) {
+  #break-label {
+    font-size: 1.5em;
+  }
+
+  #break-length {
+    font-size: 1.5em;
+  }
+}

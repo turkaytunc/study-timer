@@ -40,3 +40,26 @@ button {
   grid-gap: 5em;
   padding-top: 2em;
 }
+
+@media screen and (max-width: 520px) {
+  .app {
+    width: 100%;
+    margin: 0 auto;
+    height: 100vh;
+  }
+
+  .prog-title {
+    font-size: 2em;
+  }
+
+  button {
+    height: 0.9em;
+    width: 1.5em;
+    font-size: 1em;
+  }
+
+  .section-container {
+    width: 80%;
+    padding-top: 2em;
+  }
+}

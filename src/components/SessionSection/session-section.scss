@@ -18,3 +18,13 @@
 #session-length {
   font-size: 3em;
 }
+
+@media screen and (max-width: 520px) {
+  #session-label {
+    font-size: 1.5em;
+  }
+
+  #session-length {
+    font-size: 1.5em;
+  }
+}
