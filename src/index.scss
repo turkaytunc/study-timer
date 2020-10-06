@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,5 +9,10 @@
 
 body {
   background: #ccc;
-  width: 100%;
+}
+
+@media screen and (max-width: 850px) {
+  body {
+    background: #343434;
+  }
 }
