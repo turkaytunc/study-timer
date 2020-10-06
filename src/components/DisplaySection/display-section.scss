@@ -4,31 +4,30 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  margin-top: 3em;
 }
 
 .display-timer-container {
-  border: 2px solid aliceblue;
-  padding: 10vh 0;
+  border: 2px solid rgb(189, 219, 245);
+  padding: 2em 0;
   width: 80%;
   border-radius: 5px;
   margin-bottom: 5em;
+  background-color: rgb(140, 66, 184);
+  color: white;
 }
 
 #timer-label {
-  font-size: 2em;
+  font-size: 3em;
 }
 
 #time-left {
-  font-size: 5em;
+  font-size: 10em;
 }
 
 .display-button-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 80%;
-  justify-content: center;
-  align-items: center;
   justify-items: center;
   align-content: center;
 }
@@ -38,4 +37,19 @@
   font-size: 1em;
   height: 3em;
   width: 7em;
+}
+
+@media screen and (max-width: 520px) {
+  .display-timer-container {
+    width: 100%;
+    margin-bottom: 5em;
+  }
+
+  #timer-label {
+    font-size: 2em;
+  }
+
+  #time-left {
+    font-size: 5em;
+  }
 }
