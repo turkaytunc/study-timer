@@ -20,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testAll": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "commit": "sh commit.sh",
     "predeploy": "npm run build",
