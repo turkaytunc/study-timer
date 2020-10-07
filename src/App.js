@@ -7,23 +7,24 @@ import { initialState } from './util/initialState/initialState';
 import { decrementSecond } from './util/decrementSecond/decrementSecond';
 
 export function App() {
-  let timeout = null;
   const [state, setState] = React.useState(initialState);
+  const [timeO, setTimeO] = React.useState(null);
 
   React.useEffect(() => {
     if (state.isPlaying) {
-      timeout = decrementSecond(state, setState);
+      let tm = decrementSecond(state, setState);
+      setTimeO(tm);
     }
   }, [state, setState]);
 
   const startStop = () => {
     setState({ ...state, isPlaying: !state.isPlaying });
-    clearTimeout(timeout);
+    clearTimeout(timeO);
   };
 
   const handleReset = () => {
     setState({ ...state, ...initialState });
-    clearTimeout(timeout);
+    clearTimeout(timeO);
   };
 
   const handleLength = (type, operation) => {
