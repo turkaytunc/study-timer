@@ -3,74 +3,38 @@ import './App.scss';
 import { BreakSection } from './components/BreakSection/BreakSection';
 import { SessionSection } from './components/SessionSection/SessionSection';
 import { DisplaySection } from './components/DisplaySection/DisplaySection';
+import { initialState } from './util/initialState/initialState';
+import { decrementSecond } from './util/decrementSecond/decrementSecond';
 
-function App() {
-  const initialState = {
-    minuteLeft: 25,
-    secondLeft: 0,
-    sessionLength: 25,
-    breakLength: 5,
-    isPlaying: false,
-    isBreak: false,
-    cycleCount: 0,
-  };
+export function App() {
   const [state, setState] = React.useState(initialState);
+  const [timeO, setTimeO] = React.useState(null);
 
-  let tm = null;
-
-  const decrementSecond = () => {
-    tm = setTimeout(() => {
-      if (state.secondLeft > 0 && state.isPlaying) {
-        setState({
-          ...state,
-          secondLeft: state.secondLeft - 1,
-        });
-      } else if (
-        state.secondLeft <= 0 &&
-        state.minuteLeft > 0 &&
-        state.isPlaying
-      ) {
-        setState({
-          ...state,
-          minuteLeft: state.minuteLeft - 1,
-          secondLeft: 59,
-        });
-      } else if (
-        state.minuteLeft <= 0 &&
-        state.secondLeft <= 0 &&
-        state.isPlaying
-      ) {
-        if (state.isBreak) {
-          setState({
-            ...state,
-            minuteLeft: state.sessionLength,
-            isBreak: false,
-          });
-        } else {
-          setState({
-            ...state,
-            minuteLeft: state.breakLength,
-            isBreak: true,
-            cycleCount: state.cycleCount + 1,
-          });
-        }
-      }
-    }, 1000);
+  const changeTitle = (state) => {
+    let min = state.minuteLeft < 10 ? '0' + state.minuteLeft : state.minuteLeft;
+    let sec = state.secondLeft < 10 ? '0' + state.secondLeft : state.secondLeft;
+    let time = `${min} : ${sec}`;
+    let study = state.isBreak ? 'Break Time' : 'Study Time';
+    document.title = `${study} ${time}`;
   };
 
   React.useEffect(() => {
     if (state.isPlaying) {
-      decrementSecond();
+      changeTitle(state);
+      let tm = decrementSecond(state, setState);
+      setTimeO(tm);
     }
-  });
+  }, [state, setState]);
+
   const startStop = () => {
     setState({ ...state, isPlaying: !state.isPlaying });
-    clearTimeout(tm);
+    clearTimeout(timeO);
   };
 
   const handleReset = () => {
     setState({ ...state, ...initialState });
-    clearTimeout(tm);
+    clearTimeout(timeO);
+    changeTitle(initialState);
   };
 
   const handleLength = (type, operation) => {
@@ -149,5 +113,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
