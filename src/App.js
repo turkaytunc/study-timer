@@ -8,7 +8,6 @@ import { decrementSecond } from './util/decrementSecond/decrementSecond';
 
 export function App() {
   let timeout = null;
-
   const [state, setState] = React.useState(initialState);
 
   React.useEffect(() => {
