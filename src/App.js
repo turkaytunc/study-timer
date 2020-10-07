@@ -3,74 +3,28 @@ import './App.scss';
 import { BreakSection } from './components/BreakSection/BreakSection';
 import { SessionSection } from './components/SessionSection/SessionSection';
 import { DisplaySection } from './components/DisplaySection/DisplaySection';
+import { initialState } from './util/initialState/initialState';
+import { decrementSecond } from './util/decrementSecond/decrementSecond';
 
-function App() {
-  const initialState = {
-    minuteLeft: 25,
-    secondLeft: 0,
-    sessionLength: 25,
-    breakLength: 5,
-    isPlaying: false,
-    isBreak: false,
-    cycleCount: 0,
-  };
+export function App() {
+  let timeout = null;
+
   const [state, setState] = React.useState(initialState);
-
-  let tm = null;
-
-  const decrementSecond = () => {
-    tm = setTimeout(() => {
-      if (state.secondLeft > 0 && state.isPlaying) {
-        setState({
-          ...state,
-          secondLeft: state.secondLeft - 1,
-        });
-      } else if (
-        state.secondLeft <= 0 &&
-        state.minuteLeft > 0 &&
-        state.isPlaying
-      ) {
-        setState({
-          ...state,
-          minuteLeft: state.minuteLeft - 1,
-          secondLeft: 59,
-        });
-      } else if (
-        state.minuteLeft <= 0 &&
-        state.secondLeft <= 0 &&
-        state.isPlaying
-      ) {
-        if (state.isBreak) {
-          setState({
-            ...state,
-            minuteLeft: state.sessionLength,
-            isBreak: false,
-          });
-        } else {
-          setState({
-            ...state,
-            minuteLeft: state.breakLength,
-            isBreak: true,
-            cycleCount: state.cycleCount + 1,
-          });
-        }
-      }
-    }, 1000);
-  };
 
   React.useEffect(() => {
     if (state.isPlaying) {
-      decrementSecond();
+      timeout = decrementSecond(state, setState);
     }
-  });
+  }, [state, setState]);
+
   const startStop = () => {
     setState({ ...state, isPlaying: !state.isPlaying });
-    clearTimeout(tm);
+    clearTimeout(timeout);
   };
 
   const handleReset = () => {
     setState({ ...state, ...initialState });
-    clearTimeout(tm);
+    clearTimeout(timeout);
   };
 
   const handleLength = (type, operation) => {
@@ -149,5 +103,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
