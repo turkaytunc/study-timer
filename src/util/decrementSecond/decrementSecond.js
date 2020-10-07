@@ -1,4 +1,9 @@
 export const decrementSecond = (state, setState) => {
+  const playSound = () => {
+    let audio = new Audio(`${process.env.PUBLIC_URL}/sound/coin.ogg`);
+    audio.play();
+  };
+
   let tm = setTimeout(() => {
     if (state.secondLeft > 0 && state.isPlaying) {
       setState({
@@ -20,6 +25,7 @@ export const decrementSecond = (state, setState) => {
       state.secondLeft <= 0 &&
       state.isPlaying
     ) {
+      playSound();
       if (state.isBreak) {
         setState({
           ...state,

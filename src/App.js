@@ -10,8 +10,17 @@ export function App() {
   const [state, setState] = React.useState(initialState);
   const [timeO, setTimeO] = React.useState(null);
 
+  const changeTitle = (state) => {
+    let min = state.minuteLeft < 10 ? '0' + state.minuteLeft : state.minuteLeft;
+    let sec = state.secondLeft < 10 ? '0' + state.secondLeft : state.secondLeft;
+    let time = `${min} : ${sec}`;
+    let study = state.isBreak ? 'Break Time' : 'Study Time';
+    document.title = `${study} ${time}`;
+  };
+
   React.useEffect(() => {
     if (state.isPlaying) {
+      changeTitle(state);
       let tm = decrementSecond(state, setState);
       setTimeO(tm);
     }
@@ -25,6 +34,7 @@ export function App() {
   const handleReset = () => {
     setState({ ...state, ...initialState });
     clearTimeout(timeO);
+    changeTitle(initialState);
   };
 
   const handleLength = (type, operation) => {
