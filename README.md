@@ -5,3 +5,5 @@
 :rocket: [Visit Website](https://turkaytunc.github.io/study-timer/)
 
 :page_facing_up: [MIT License](https://github.com/turkaytunc/study-timer/blob/main/LICENSE)
+
+![How It Works](https://github.com/turkaytunc/study-timer/blob/main/public/study-timer.gif)
