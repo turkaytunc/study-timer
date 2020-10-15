@@ -3,9 +3,8 @@ export const decrementSecond = (state, setState) => {
     let audio = new Audio(`${process.env.PUBLIC_URL}/sound/coin.ogg`);
     audio.play();
   };
-  let time = document.hidden ? 500 : 1000;
 
-  let tm = setTimeout(() => {
+  return setTimeout(() => {
     if (state.secondLeft > 0 && state.isPlaying) {
       setState({
         ...state,
@@ -42,6 +41,5 @@ export const decrementSecond = (state, setState) => {
         });
       }
     }
-  }, time);
-  return tm;
+  }, 1000);
 };
